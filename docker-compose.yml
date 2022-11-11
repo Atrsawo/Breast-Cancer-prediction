@@ -1,0 +1,21 @@
+services:
+
+  app:
+    build: .
+    command: python flk.py
+    ports:
+      - 5000:5000
+    volumes:
+      - ./src:/app
+    
+  db:
+    image: mongo:latest
+    
+    volumes:
+      - $PWD/mongo-data:/data/db
+      - $PWD/mongo-app:/var/www/html
+    ports:
+      - 27017:27017
+    # net:
+    #   port: 27017
+    #   bindIp : [127.0.0.1,0.0.0.0] 
